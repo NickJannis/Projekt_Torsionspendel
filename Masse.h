@@ -11,7 +11,7 @@
 
 #ifndef MASSE_H_
 #define MASSE_H_
-#include <iostream>
+#include<iostream>
 #include <vector>
 
 using namespace std;
