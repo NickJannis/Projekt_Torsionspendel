@@ -11,8 +11,8 @@
 
 #ifndef MASSE_H_
 #define MASSE_H_
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -44,6 +44,13 @@ public:
 	///Diese Methode berechnet das Traegheitsmoment des Massestücks und speichert es in der entsprechenden Variable.
 	/** Diese Methode ist in der Klasse Masse vorgeschrieben, damit jede erbende Klasse diese Methode implementiert haben muss. */
 	virtual void berechneTraeghm();
+
+	int main(){
+		Masse beispielmasse;
+		beispielmasse.setMasse(200.0, 0.1);
+		cout<<beispielmasse.getMasse().front()<<", "<< beispielmasse.getMasse().back()<<endl;
+		return 1;
+	}
 
 };
 
