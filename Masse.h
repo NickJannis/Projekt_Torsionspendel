@@ -46,12 +46,6 @@ public:
 	/** Diese Methode ist in der Klasse Masse vorgeschrieben, damit jede erbende Klasse diese Methode implementiert haben muss. */
 	void berechneTraeghm();
 
-	int main(){
-		Masse beispielmasse;
-		beispielmasse.setMasse(200.0, 0.1);
-		cout<<beispielmasse.getMasse().front()<<", "<< beispielmasse.getMasse().back()<<endl;
-		return 1;
-	}
 
 };
 
