@@ -8,7 +8,8 @@
 ///Diese Klasse bildet die Basisklasse der am Pendel zu befestigenden Massestücke.
 /** Das hier modellierte Massestück besitzt eine Masse, einen bestimmten Abstand zum Pendel und ein eigenes Trägheitsmoment.
  * Dieses wird benötigt, um die Schwingung des Pendels zu simulieren.
- * Bei dem Massestück handelt es sich um einen Zylinder, dessen zentrale Achse in Richtung des Pendels zeigt.*/
+ * Bei dem Massestück handelt es sich um einen Zylinder, dessen zentrale Achse in Richtung des Pendels zeigt.
+ * Der Zylinder ist dabei ein Hohlzylinder mit Innenradius RaI und Außenradius RaA, sowie der Länge Laen.*/
 
 #ifndef MASSE_H_
 #define MASSE_H_
@@ -17,13 +18,17 @@
 #include <cmath>
 
 using namespace std;
+typedef vector<double> v2;
 
 class Masse {
 private:
 	///Die Klasse speichert ihre Masse, ihr Traegheitsmoment und den Abstand zum Torsionsdraht mit möglichem einzugebenden Fehler (Bezeichnet mit d).
-	vector<double> masse;
-	vector<double> abst;
-	vector<double> traegheitsm;
+	v2 masse;
+	v2 abst;
+	v2 traegheitsm;
+	v2 rai;
+	v2 raa;
+	v2 laen;
 public:
 	///Ein Massestück kann ohne Parameter und mit angegebener Masse erstellt werden.
 	Masse();
@@ -39,10 +44,27 @@ public:
 	///Diese Methode setzt den Abstand des Massestücks zum Draht.
 	/** Der Funktione werden als Parameter der Abstand und der Fehler übergeben.*/
 	void setAbst(const double& pAbst, const double& pFehler);
+	///Diese Methode setzt den Innenradius des Zylinders.
+	/**Der Methode werden dabei als Parameter der Innenradius mit Fehler angegeben.*/
+	void setRai(const double& pRai, const double& pFehler);
+	///Diese Methode setzt den Außenradius des Zylinders.
+	/**Der Methode werden dabei als Parameter der Außenradius mit Fehler angegeben.*/
+	void setRaa(const double& pRaa, const double& pFehler);
+	///Diese Methode setzt die Länge des Zylinders.
+	/**Der Methode werden dabei die Länge des Zylinders, sowie der zugehörige Fehler übergeben.*/
+	void setLaen(const double& pLaen, const double& pFehler);
+
 	///Diese Methode gibt die Masse des Objekts aus.
-	vector<double> getMasse();
+	v2 getMasse();
 	///Diese Methode gibt den Abstand des Pendels zum Draht aus.
-	vector<double> getAbst();
+	v2 getAbst();
+	///Diese Methode gibt den Innenradius des Zylinders aus.
+	v2 getRai();
+	///Diese Methode gibt den Außenradius des Zylinders aus.
+	v2 getRaa();
+	///Diese Methode gibt die Länge des Zylinders aus.
+	v2 getLaen();
+
 	///Diese Methode berechnet das Traegheitsmoment des Massestücks und speichert es in der entsprechenden Variable.
 	/** Diese Methode ist in der Klasse Masse vorgeschrieben, damit jede erbende Klasse diese Methode implementiert haben muss. */
 	void berechneTraeghm();
