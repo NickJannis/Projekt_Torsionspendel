@@ -18,7 +18,7 @@
 #include <cmath>
 
 using namespace std;
-typedef vector<double> v2;
+typedef std::vector<double> v2;
 
 class Masse {
 private:
@@ -68,10 +68,7 @@ public:
 	///Diese Methode berechnet das Traegheitsmoment des Massestücks und speichert es in der entsprechenden Variable.
 	/** Diese Methode ist in der Klasse Masse vorgeschrieben, damit jede erbende Klasse diese Methode implementiert haben muss. */
 	void berechneTraeghm();
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/heads/Branch_Nick_1
 
 };
 
