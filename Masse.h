@@ -7,7 +7,8 @@
 
 ///Diese Klasse bildet die Basisklasse der am Pendel zu befestigenden Massestücke.
 /** Das hier modellierte Massestück besitzt eine Masse, einen bestimmten Abstand zum Pendel und ein eigenes Trägheitsmoment.
- * Dieses wird benötigt, um die Schwingung des Pendels zu simulieren. */
+ * Dieses wird benötigt, um die Schwingung des Pendels zu simulieren.
+ * Bei dem Massestück handelt es sich um einen Zylinder, dessen zentrale Achse in Richtung des Pendels zeigt.*/
 
 #ifndef MASSE_H_
 #define MASSE_H_
@@ -45,13 +46,6 @@ public:
 	///Diese Methode berechnet das Traegheitsmoment des Massestücks und speichert es in der entsprechenden Variable.
 	/** Diese Methode ist in der Klasse Masse vorgeschrieben, damit jede erbende Klasse diese Methode implementiert haben muss. */
 	void berechneTraeghm();
-
-	int main(){
-		Masse beispielmasse;
-		beispielmasse.setMasse(200.0, 0.1);
-		cout<<beispielmasse.getMasse().front()<<", "<< beispielmasse.getMasse().back()<<endl;
-		return 1;
-	}
 
 };
 
