@@ -12,7 +12,8 @@
 #ifndef MASSE_H_
 #define MASSE_H_
 #include<iostream>
-#include <vector>
+#include<vector>
+#include <cmath>
 
 using namespace std;
 
@@ -43,7 +44,7 @@ public:
 	vector<double> getAbst();
 	///Diese Methode berechnet das Traegheitsmoment des Massestücks und speichert es in der entsprechenden Variable.
 	/** Diese Methode ist in der Klasse Masse vorgeschrieben, damit jede erbende Klasse diese Methode implementiert haben muss. */
-	virtual void berechneTraeghm();
+	void berechneTraeghm();
 
 	int main(){
 		Masse beispielmasse;
