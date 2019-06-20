@@ -7,60 +7,54 @@
 
 #include "Masse.h"
 #include<iostream>
-#include<vector>
 #include <cmath>
 using namespace std;
-typedef vector<double> v2;
+typedef array<double, 2> v2;
 
 Masse::Masse() {
 	// TODO Auto-generated constructor stub
 
 }
 Masse::Masse(const double& pMasse){
-	masse.push_back(pMasse);
+	masse[1]= pMasse;
 	this->berechneTraeghm();
 }
 
 Masse::Masse(const double& pMasse, const double& pFehler){
-	masse.push_back(pMasse);
-	masse.push_back(pFehler);
+	masse[1]=pMasse;
+	masse[2]=pFehler;
 	this->berechneTraeghm();
 }
 
 void Masse::setMasse(const double& pMasse,const double& pFehler){
-	masse.clear();
-	masse.push_back(pMasse);
-	masse.push_back(pFehler);
+	masse[1]=pMasse;
+	masse[2]=pFehler;
 }
 
 
 void Masse::setAbst(const double& pAbst, const double& pFehler){
-	abst.clear();
-	abst.push_back(pAbst);
-	abst.push_back(pFehler);
+	abst[1]=pAbst;
+	abst[2]=pFehler;
 }
 void
 Masse::setRai(const double& pRai, const double& pFehler){
-	rai.clear();
-	rai.push_back(pRai);
-	rai.push_back(pFehler);
+	rai[1]=pRai;
+	rai[2]=pFehler;
 }
 
 void
 Masse::setRaa(const double& pRaa, const double& pFehler){
-	raa.clear();
-	raa.push_back(pRaa);
-	raa.push_back(pFehler);
+	raa[1]=pRaa;
+	raa[2]=pFehler;
 }
 void
 Masse::setLaen(const double& pLaen, const double& pFehler){
-	laen.clear();
-	laen.push_back(pLaen);
-	laen.push_back(pFehler);
+	laen[1]=pLaen;
+	laen[2]=pFehler;
 }
 
 
-v2
+
 Masse::getMasse(){
 	return masse;
 }

@@ -14,11 +14,11 @@
 #ifndef MASSE_H_
 #define MASSE_H_
 #include<iostream>
-#include<vector>
 #include <cmath>
+#include<array>
 
 using namespace std;
-typedef vector<double> v2;
+typedef array<double, 2> v2;
 
 class Masse {
 private:
