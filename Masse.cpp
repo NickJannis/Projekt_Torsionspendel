@@ -15,14 +15,35 @@ Masse::Masse() {
 	// TODO Auto-generated constructor stub
 
 }
-Masse::Masse(const double& pMasse){
+Masse::Masse(const double& pMasse, const double& pAbst, const double& pTraeghm, const double& pRai, const double& pRaa, const double& pLaen){
 	masse[1]= pMasse;
+	masse[2]=0;
+	abst[1]=pAbst;
+	abst[2]=0;
+	traegheitsm[1]=pTraeghm;
+	traegheitsm[2]=0;
+	rai[1]=pRai;
+	rai[2]=0;
+	raa[1]=pRaa;
+	raa[2]=0;
+	laen[1]=pLaen;
+	laen[2]= 0;
 	this->berechneTraeghm();
 }
 
-Masse::Masse(const double& pMasse, const double& pFehler){
-	masse[1]=pMasse;
-	masse[2]=pFehler;
+Masse::Masse(const double& pMasse, const double& pAbst, const double& pTraeghm, const double& pRai, const double& pRaa, const double& pLaen, const double& dMasse, const double& dAbst, const double& dTraeghm, const double& dRai, const double& dRaa, const double& dLaen){
+	masse[1]= pMasse;
+	masse[2]=dMasse;
+	abst[1]=pAbst;
+	abst[2]=dAbst;
+	traegheitsm[1]=pTraeghm;
+	traegheitsm[2]=dTraeghm;
+	rai[1]=pRai;
+	rai[2]=dRai;
+	raa[1]=pRaa;
+	raa[2]=dRaa;
+	laen[1]=pLaen;
+	laen[2]= dLaen;
 	this->berechneTraeghm();
 }
 

@@ -32,9 +32,9 @@ private:
 public:
 	///Ein Massestück kann ohne Parameter und mit angegebener Masse erstellt werden.
 	Masse();
-	Masse(const double& pMasse);
+	Masse(const double& pMasse, const double& pAbst, const double& pTraeghm, const double& pRai, const double& pRaa, const double& pLaen);
 	///Ein Massestück kann auch mit angegebener Masse mit Fehler angegeben werden.
-	Masse(const double& pMasse, const double& pFehler);
+	Masse(const double& pMasse, const double& pAbst, const double& pTraeghm, const double& pRai, const double& pRaa, const double& pLaen, const double& dMasse, const double& dAbst, const double& dTraeghm, const double& dRai, const double& dRaa, const double& dLaen);
 	virtual ~Masse();
 
 	///Mit dieser Methode wird die Masse festgelegt.
