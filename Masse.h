@@ -66,7 +66,7 @@ public:
 	v2 getLaen();
 
 	///Diese Methode berechnet das Traegheitsmoment des Massestücks und speichert es in der entsprechenden Variable.
-	/** Diese Methode ist in der Klasse Masse vorgeschrieben, damit jede erbende Klasse diese Methode implementiert haben muss. */
+	/** Diese Methode geht von einem Hohlzylinder als Objekt aus und berechnet das entsprechende Trägheitsmoment. */
 	void berechneTraeghm();
 
 };

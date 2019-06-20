@@ -97,7 +97,14 @@ Masse::getLaen(){
 }
 
 void
-Masse::berechneTraeghm(){}
+Masse::berechneTraeghm(){
+	if(!masse.empty()&&!rai.empty()&&!raa.empty&&!laen.empty()){
+		traegheitsm[1]=(pow(raa[1],2)+pow(rai[1],2)+pow(laen[1],2)/3)*0.25*masse[1];
+		traegheitsm[2]=sqrt(pow((pow(raa[1],2)+pow(rai[1],2)+pow(laen[1],2)/3)*0.25*masse[2],2)+pow(0.5*masse[1]*raa[1]*raa[2],2)+pow(0.5*masse[1]*rai[1]*rai[2],2)+pow(0.5*masse[1]*laen[1]*laen[2]/3,2));
+	}else{
+		cout<<"Fehler beim Berechnen des Traegheitsmoment."<<endl;
+	}
+}
 Masse::~Masse() {
 	// TODO Auto-generated destructor stub
 }
