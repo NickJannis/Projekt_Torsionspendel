@@ -6,9 +6,12 @@
  */
 
 #include "Pendel.h"
+#include "Masse.h"
 #include<iostream>
 #include<vector>
 #include<array>
+#include<cmath>
+#include<string>
 
 using namespace std;
 
@@ -18,11 +21,11 @@ Pendel::Pendel() {
 
 }
 Pendel::Pendel(const double& pPhi){
-	phi[1] = pPhi;
+	phi[0] = pPhi;
 }
 Pendel::Pendel(const double& pPhi, const double& pFehler){
-	phi[1] = pPhi;
-	phi[2] = pFehler;
+	phi[0] = pPhi;
+	phi[1] = pFehler;
 }
 Pendel::void erstelleZylinder(const double& masse, const double& abst, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen){
 	zylinder = new Masse(masse, abst, rai, raa, laen, dMasse, dAbst, dRai, dRaa, dLaen);
@@ -32,24 +35,30 @@ Pendel::void erstelle Stange(const double& masse, const double& rai, const doubl
 }
 
 void Pendel::setPhi(const double& pPhi, const double& pFehler){
-	phi[1] = pPhi;
-	phi[2] = pFehler;
+	phi[0] = pPhi;
+	phi[1] = pFehler;
 }
 
 array<double,2> Pendel::getPhi(){
 	return phi;
 }
-array<double,2> Pendel::berechneOmega(const double& pRichtm, const double& pTraeghmg){
-	omega[1] = sqrt (richtm[1]/traegheitsmg[1]);
-	omega[2] = sqrt (pow((0.5*(1/sqrt(traegheitsmg[1]*richtm[1])))*richtm[2]),2)+pow((0.5*(sqrt(richtm[1]/pow(traegheitsmg[1],3)))*traegheitsmg[2]),2))
+double Pendel::berechneOmega(const double& pRichtm, const double& pTraeghmg){
+	omega[0] = sqrt (richtm[0]/traegheitsmg[0]);
+	omega[1] = sqrt (pow((0.5*(1/sqrt(traegheitsmg[0]*richtm[0])))*richtm[1]),2)+pow((0.5*(sqrt(richtm[0]/pow(traegheitsmg[0],3)))*traegheitsmg[1]),2))
 	return omega;
 }
 void Pendel::berechneTraeghmg(){
-	traegheitsmg[1] = (stange.getTraeghm())[1]+ 2* ((zylinder.getMasse())[1]* pow((zylinder.getAbst())[1],2)+ (zylinder.getTraeghm()[1])
-	traegheitsmg[2] = sqrt(pow((stange.getTraeghm())[2],2)+ pow((2*pow((zylinder.getAbst())[1],2)*(zylinder.getMasse())[2]),2)+ pow((4*(zylinder.getMasse())[1]*(zylinder.getAbst())[1]*(zylinder.getAbst())[2]),2)+ pow((2*(zylinder.getTraeghm())[2]),2))
+	traegheitsmg[0] = (stange.getTraeghm())[0]+ 2* ((zylinder.getMasse())[0]* pow((zylinder.getAbst())[0],2)+ (zylinder.getTraeghm()[0])
+	traegheitsmg[1] = sqrt(pow((stange.getTraeghm())[0],2)+ pow((2*pow((zylinder.getAbst())[0],2)*(zylinder.getMasse())[1]),2)+ pow((4*(zylinder.getMasse())[0]*(zylinder.getAbst())[0]*(zylinder.getAbst())[1]),2)+ pow((2*(zylinder.getTraeghm())[1]),2))
 }
 
 Pendel::~Pendel() {
 	// TODO Auto-generated destructor stub
 }
 
+int main(){
+	Pendel a;
+	a.setPhi(20,0.1);
+	cout << a.getPhi()[0] << "/" << a.getPhi()[1] << endl;
+	return 0;
+}

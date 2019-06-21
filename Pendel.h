@@ -2,7 +2,7 @@
  * Pendel.h
  *
  *  Created on: 20.06.2019
- *      Author: rene
+ *      Author: Ronja van Luijt
  */
 
 ///Diese Klasse bildet sozusagen die Hauptklasse.
@@ -15,6 +15,8 @@
 #include <iostream>
 #include <vector>
 #include<array>
+#include<cmath>
+#include<string>
 #include "Masse.h"
 
 using namespace std;
@@ -46,7 +48,7 @@ public:
 	/**Diese Methode berechnet das Gesamtträgheitsmoment mit Fehler mit Hilfe der in der Klasse "Masse" berechneten Einzelträgheitsmomente von Stange und Zylinder, sowie deren festgelegte Masse und Abstand zum Drehpunkt.*/
 	void berechneTraeghmg();
 	///Diese Methode berechnet die Kreisfrequenz mit Hilfe des Gesamtträgheitsmomentes und dem in der Klasse "Draht" berechnetem Richtmoment.
-	array<double,2> berechneOmega(const double& pRichtm, const double& pTraeghmg);
+	double berechneOmega(const double& pRichtm, const double& pTraeghmg);
 
 
 };
