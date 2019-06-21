@@ -8,99 +8,102 @@
 #include "Masse.h"
 #include<iostream>
 #include <cmath>
+#include<array>
 using namespace std;
-typedef array<double, 2> v2;
+
 
 Masse::Masse() {
 	// TODO Auto-generated constructor stub
 
 }
-Masse::Masse(const double& pMasse, const double& pAbst, const double& pTraeghm, const double& pRai, const double& pRaa, const double& pLaen){
-	masse[1]= pMasse;
-	masse[2]=0;
-	abst[1]=pAbst;
-	abst[2]=0;
-	traegheitsm[1]=pTraeghm;
-	traegheitsm[2]=0;
-	rai[1]=pRai;
-	rai[2]=0;
-	raa[1]=pRaa;
-	raa[2]=0;
-	laen[1]=pLaen;
-	laen[2]= 0;
+Masse::Masse(const double& pMasse, const double& pAbst, const double& pRai, const double& pRaa, const double& pLaen){
+	masse[0]= pMasse;
+	masse[1]=0;
+	abst[0]=pAbst;
+	abst[1]=0;
+	rai[0]=pRai;
+	rai[1]=0;
+	raa[0]=pRaa;
+	raa[1]=0;
+	laen[0]=pLaen;
+	laen[1]= 0;
 	this->berechneTraeghm();
 }
 
-Masse::Masse(const double& pMasse, const double& pAbst, const double& pTraeghm, const double& pRai, const double& pRaa, const double& pLaen, const double& dMasse, const double& dAbst, const double& dTraeghm, const double& dRai, const double& dRaa, const double& dLaen){
-	masse[1]= pMasse;
-	masse[2]=dMasse;
-	abst[1]=pAbst;
-	abst[2]=dAbst;
-	traegheitsm[1]=pTraeghm;
-	traegheitsm[2]=dTraeghm;
-	rai[1]=pRai;
-	rai[2]=dRai;
-	raa[1]=pRaa;
-	raa[2]=dRaa;
-	laen[1]=pLaen;
-	laen[2]= dLaen;
-	this->berechneTraeghm();
+Masse::Masse(const double& pMasse, const double& pAbst, const double& pRai, const double& pRaa, const double& pLaen, const double& dMasse, const double& dAbst, const double& dTraeghm, const double& dRai, const double& dRaa, const double& dLaen){
+	masse[0]= pMasse;
+		masse[1]=dMasse;
+		abst[0]=pAbst;
+		abst[1]=dAbst;
+		rai[0]=pRai;
+		rai[1]=dRai;
+		raa[0]=pRaa;
+		raa[1]=dRaa;
+		laen[0]=pLaen;
+		laen[1]= dLaen;
+		this->berechneTraeghm();
 }
 
 void Masse::setMasse(const double& pMasse,const double& pFehler){
-	masse[1]=pMasse;
-	masse[2]=pFehler;
+	masse[0]=pMasse;
+	masse[1]=pFehler;
 }
 
 
 void Masse::setAbst(const double& pAbst, const double& pFehler){
-	abst[1]=pAbst;
-	abst[2]=pFehler;
+	abst[0]=pAbst;
+	abst[1]=pFehler;
 }
 void
 Masse::setRai(const double& pRai, const double& pFehler){
-	rai[1]=pRai;
-	rai[2]=pFehler;
+	rai[0]=pRai;
+	rai[1]=pFehler;
 }
 
 void
 Masse::setRaa(const double& pRaa, const double& pFehler){
-	raa[1]=pRaa;
-	raa[2]=pFehler;
+	raa[0]=pRaa;
+	raa[1]=pFehler;
 }
 void
 Masse::setLaen(const double& pLaen, const double& pFehler){
-	laen[1]=pLaen;
-	laen[2]=pFehler;
+	laen[0]=pLaen;
+	laen[1]=pFehler;
 }
 
 
-
+std::array<double, 2>
 Masse::getMasse(){
 	return masse;
 }
-v2
+std::array<double, 2>
 Masse::getAbst(){
 	return abst;
 }
-v2
+array<double, 2>
 Masse::getRai(){
 	return rai;
 }
-v2
+array<double, 2>
 Masse::getRaa(){
 	return raa;
 }
-v2
+array<double, 2>
 Masse::getLaen(){
 	return laen;
 }
 
+array<double, 2>
+Masse::getTraeghm(){
+	this->berechneTraeghm();
+	return traegheitsm;
+}
+
 void
 Masse::berechneTraeghm(){
-	if(!masse.empty()&&!rai.empty()&&!raa.empty&&!laen.empty()){
-		traegheitsm[1]=(pow(raa[1],2)+pow(rai[1],2)+pow(laen[1],2)/3)*0.25*masse[1];
-		traegheitsm[2]=sqrt(pow((pow(raa[1],2)+pow(rai[1],2)+pow(laen[1],2)/3)*0.25*masse[2],2)+pow(0.5*masse[1]*raa[1]*raa[2],2)+pow(0.5*masse[1]*rai[1]*rai[2],2)+pow(0.5*masse[1]*laen[1]*laen[2]/3,2));
+	if(!(masse.empty())&&!(rai.empty())&&!(raa.empty())&&!(laen.empty())){
+		traegheitsm[0]=(pow(raa[0],2)+pow(rai[0],2)+pow(laen[0],2)/3)*0.25*masse[0];
+		traegheitsm[1]=sqrt(pow((pow(raa[0],2)+pow(rai[0],2)+pow(laen[0],2)/3)*0.25*masse[1],2)+pow(0.5*masse[0]*raa[0]*raa[1],2)+pow(0.5*masse[0]*rai[0]*rai[1],2)+pow(0.5*masse[0]*laen[0]*laen[1]/3,2));
 	}else{
 		cout<<"Fehler beim Berechnen des Traegheitsmoment."<<endl;
 	}
