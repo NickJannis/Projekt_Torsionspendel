@@ -72,11 +72,11 @@ Masse::setLaen(const double& pLaen, const double& pFehler){
 }
 
 
-std::array<double, 2>
+array<double, 2>
 Masse::getMasse(){
 	return masse;
 }
-std::array<double, 2>
+array<double, 2>
 Masse::getAbst(){
 	return abst;
 }
