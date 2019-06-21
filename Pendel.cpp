@@ -27,10 +27,10 @@ Pendel::Pendel(const double& pPhi, const double& pFehler){
 	phi[0] = pPhi;
 	phi[1] = pFehler;
 }
-Pendel::void erstelleZylinder(const double& masse, const double& abst, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen){
+void Pendel::erstelleZylinder(const double& masse, const double& abst, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen){
 	zylinder = new Masse(masse, abst, rai, raa, laen, dMasse, dAbst, dRai, dRaa, dLaen);
 }
-Pendel::void erstelle Stange(const double& masse, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dRai, const double& dRaa, const double& dLaen){
+void Pendel::erstelleStange(const double& masse, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dRai, const double& dRaa, const double& dLaen){
 	stange = new Masse(masse,0, rai, raa, laen, dMasse, 0, dRai, dRaa, dLaen)
 }
 
