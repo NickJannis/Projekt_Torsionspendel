@@ -14,27 +14,29 @@
 #ifndef MASSE_H_
 #define MASSE_H_
 #include<iostream>
-#include<vector>
 #include <cmath>
+#include<array>
 
 using namespace std;
-typedef vector<double> v2;
 
 class Masse {
 private:
 	///Die Klasse speichert ihre Masse, ihr Traegheitsmoment und den Abstand zum Torsionsdraht mit möglichem einzugebenden Fehler (Bezeichnet mit d).
-	v2 masse;
-	v2 abst;
-	v2 traegheitsm;
-	v2 rai;
-	v2 raa;
-	v2 laen;
+	array<double, 2> masse;
+	array<double, 2> abst;
+	array<double, 2> traegheitsm;
+	array<double, 2> rai;
+	array<double, 2> raa;
+	array<double, 2> laen;
 public:
 	///Ein Massestück kann ohne Parameter und mit angegebener Masse erstellt werden.
 	Masse();
-	Masse(const double& pMasse);
-	///Ein Massestück kann auch mit angegebener Masse mit Fehler angegeben werden.
-	Masse(const double& pMasse, const double& pFehler);
+	//Dieser Konstruktor erstellt einen Hohlzylinder mit angegebenen Parametern.
+	/**Als Parameter werden der Methode die Masse, der Abstand, der Innenradius, der Außenradius und die Länge übergeben. */
+	Masse(const double& pMasse, const double& pAbst, const double& pRai, const double& pRaa, const double& pLaen);
+	//Dieser Konstruktor erstellt einen Hohlzylinder mit angegebenen Parametern und Fehlern.
+	/**Als Parameter werden der Methode die Masse, der Abstand, der Innenradius, der Außenradius, die Länge, den Massefehler, den Abstandsfehler, den Fehler des Innen- und Außenradius und den Fehler der Länge übergeben. */
+	Masse(const double& pMasse, const double& pAbst, const double& pRai, const double& pRaa, const double& pLaen, const double& dMasse, const double& dAbst, const double& dTraeghm, const double& dRai, const double& dRaa, const double& dLaen);
 	virtual ~Masse();
 
 	///Mit dieser Methode wird die Masse festgelegt.
@@ -55,18 +57,20 @@ public:
 	void setLaen(const double& pLaen, const double& pFehler);
 
 	///Diese Methode gibt die Masse des Objekts aus.
-	v2 getMasse();
+	array<double, 2> getMasse();
 	///Diese Methode gibt den Abstand des Pendels zum Draht aus.
-	v2 getAbst();
+	array<double, 2> getAbst();
 	///Diese Methode gibt den Innenradius des Zylinders aus.
-	v2 getRai();
+	array<double, 2> getRai();
 	///Diese Methode gibt den Außenradius des Zylinders aus.
-	v2 getRaa();
+	array<double, 2> getRaa();
 	///Diese Methode gibt die Länge des Zylinders aus.
-	v2 getLaen();
+	array<double, 2> getLaen();
+	///Diese Methode gibt das Trägheitsmoment aus.
+	array<double, 2> getTraeghm();
 
 	///Diese Methode berechnet das Traegheitsmoment des Massestücks und speichert es in der entsprechenden Variable.
-	/** Diese Methode ist in der Klasse Masse vorgeschrieben, damit jede erbende Klasse diese Methode implementiert haben muss. */
+	/** Diese Methode geht von einem Hohlzylinder als Objekt aus und berechnet das entsprechende Trägheitsmoment. */
 	void berechneTraeghm();
 
 };
