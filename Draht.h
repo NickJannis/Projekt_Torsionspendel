@@ -26,6 +26,15 @@ public:
 	Draht();
 	Draht(const double& pRad, pLaen, pTors);
 	Draht(const double& pRad, pLaen, pTors, dRad, dLaen, dTors);
+
+	void berechneRichtm();
+	void setRad(const double& pRad,const double& pFehler);
+	void setLaen(const double& pLaen, const double& pFehler);
+	array<double, 2> getRad();
+	array<double, 2> getLaen();
+	array<double, 2> getTors();
+	array<double, 2> getRichtm();
+
 	virtual ~Draht();
 };
 
