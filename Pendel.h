@@ -39,8 +39,8 @@ public:
 	Pendel(const double& pPhi, const double& pFehler);
 	virtual ~Pendel();
 	///Die Funktionen erstelleStange und erstelleZylinder erzeugen eine Stange sowie eine Zylindermassse, dessen Eigenschaften in der Klasse "Masse" festgelegt wurden.
-	void erstelleStange(const double& masse, const double& abst, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen);
-	void erstelleZylinder(const double& masse, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dRai, const double& dRaa, const double& dLaen);
+	void erstelleStange(const double& masse, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dRai, const double& dRaa, const double& dLaen);
+	void erstelleZylinder(const double& masse, const double& abst, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen);
 	///Mit dieser Methode wird der Startwinkel festgelegt. Dieser ist ein Array, der zwei Einträge des Types double hat. Der erste Eintrag ist sein Wert, der Zweite der dazugehörige Fehler.
 	void setPhi(const double& pPhi, const double& pFehler);
 	///Mit dieser Methode wird der Startwinkel phi ausgegeben.
@@ -48,7 +48,7 @@ public:
 	/**Diese Methode berechnet das Gesamtträgheitsmoment mit Fehler mit Hilfe der in der Klasse "Masse" berechneten Einzelträgheitsmomente von Stange und Zylinder, sowie deren festgelegte Masse und Abstand zum Drehpunkt.*/
 	void berechneTraeghmg();
 	///Diese Methode berechnet die Kreisfrequenz mit Hilfe des Gesamtträgheitsmomentes und dem in der Klasse "Draht" berechnetem Richtmoment.
-	double berechneOmega(const double& pRichtm, const double& pTraeghmg);
+	void berechneOmega(const double& pRichtm, const double& pTraeghmg);
 
 
 };
