@@ -36,7 +36,7 @@ public:
 	Masse(const double& pMasse, const double& pAbst, const double& pRai, const double& pRaa, const double& pLaen);
 	//Dieser Konstruktor erstellt einen Hohlzylinder mit angegebenen Parametern und Fehlern.
 	/**Als Parameter werden der Methode die Masse, der Abstand, der Innenradius, der Außenradius, die Länge, den Massefehler, den Abstandsfehler, den Fehler des Innen- und Außenradius und den Fehler der Länge übergeben. */
-	Masse(const double& pMasse, const double& pAbst, const double& pRai, const double& pRaa, const double& pLaen, const double& dMasse, const double& dAbst, const double& dTraeghm, const double& dRai, const double& dRaa, const double& dLaen);
+	Masse(const double& pMasse, const double& pAbst, const double& pRai, const double& pRaa, const double& pLaen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen);
 	virtual ~Masse();
 
 	///Mit dieser Methode wird die Masse festgelegt.
