@@ -30,7 +30,7 @@ Masse::Masse(const double& pMasse, const double& pAbst, const double& pRai, cons
 	this->berechneTraeghm();
 }
 
-Masse::Masse(const double& pMasse, const double& pAbst, const double& pRai, const double& pRaa, const double& pLaen, const double& dMasse, const double& dAbst, const double& dTraeghm, const double& dRai, const double& dRaa, const double& dLaen){
+Masse::Masse(const double& pMasse, const double& pAbst, const double& pRai, const double& pRaa, const double& pLaen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen){
 	masse[0]= pMasse;
 		masse[1]=dMasse;
 		abst[0]=pAbst;
