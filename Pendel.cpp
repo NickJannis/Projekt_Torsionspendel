@@ -27,6 +27,12 @@ Pendel::Pendel(const double& pStw, const double& pFehler){
 	stw[0] = pStw;
 	stw[1] = pFehler;
 }
+
+void Pendel::erstelleDraht(const double& rad, const double& laen, const double& tors, const double& dRad, const double& dLaen, const double& dTors){
+	draht.setRad(rad, dRad);
+	draht.setLaen(laen, dLaen);
+	draht.setTorsm(tors, dTors);
+}
 void Pendel::erstelleZylinder(const double& masse, const double& abst, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen){
 	 zylinder.setMasse(masse, dMasse);
 	 zylinder.setAbst(abst, dAbst);

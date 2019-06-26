@@ -18,6 +18,7 @@
 #include<cmath>
 #include<string>
 #include "Masse.h"
+#include "Draht.h"
 
 using namespace std;
 
@@ -31,6 +32,8 @@ private:
 	array<double,2> richtm;
 	Masse zylinder;
 	Masse stange;
+	Draht draht;
+
 public:
 	///Das Pendel kann ohne Parameter erstellt werden oder mit einem Startwinkel phi.
 	Pendel();
@@ -38,7 +41,10 @@ public:
 	///Das Pendel kann auch mit dem Startwinkel phi sowie seinen Fehler erstellt werden.
 	Pendel(const double& pStw, const double& pFehler);
 	virtual ~Pendel();
+	///Die Funktion erstelleDraht erzeugt einen Draht, dessen Eigenschaften in der Klasse "Draht" gesetzt werden.
+	void erstelleDraht(const double& rad, const double& laen, const double& tors, const double& dRad, const double& dLaen, const double& dTors);
 	///Die Funktionen erstelleStange und erstelleZylinder erzeugen eine Stange sowie eine Zylindermassse, dessen Eigenschaften in der Klasse "Masse" festgelegt wurden.
+
 	void erstelleStange(const double& masse, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dRai, const double& dRaa, const double& dLaen);
 	void erstelleZylinder(const double& masse, const double& abst, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen);
 	///Mit dieser Methode wird der Startwinkel festgelegt. Dieser ist ein Array, der zwei Einträge des Types double hat. Der erste Eintrag ist sein Wert, der Zweite der dazugehörige Fehler.
