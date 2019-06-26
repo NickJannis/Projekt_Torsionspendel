@@ -68,9 +68,4 @@ Pendel::~Pendel() {
 	// TODO Auto-generated destructor stub
 }
 
-int main(){
-	Pendel a;
-	a.setStw(20,0.1);
-	cout << a.getStw()[0] << "/" << a.getStw()[1] << endl;
-	return 0;
-}
+
