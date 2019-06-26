@@ -4,7 +4,7 @@
  *  Created on: 20.06.2019
  *      Author: rene
  */
-
+#define _USE_MATH_DEFINES
 #include "Pendel.h"
 #include "Masse.h"
 #include<iostream>
@@ -62,6 +62,13 @@ void Pendel::berechneOmega(const double& pRichtm, const double& pTraeghmg){
 void Pendel::berechneTraeghmg(){
 	traegheitsmg[0] = (stange.getTraeghm())[0]+ 2* ((zylinder.getMasse())[0]* pow((zylinder.getAbst())[0],2)+ (zylinder.getTraeghm())[0]);
 	traegheitsmg[1] = sqrt(pow((stange.getTraeghm())[0],2)+ pow((2*pow((zylinder.getAbst())[0],2)*(zylinder.getMasse())[1]),2)+ pow((4*(zylinder.getMasse())[0]*(zylinder.getAbst())[0]*(zylinder.getAbst())[1]),2)+ pow((2*(zylinder.getTraeghm())[1]),2));
+}
+
+array<double,2> Pendel::berechneAuslenkung(const double& zeit){
+	array<double,2> ausl;
+	ausl[0] = stw[0]* sin(omega[0]* zeit + (M_PI/2));
+	ausl[1] = sqrt(pow(sin(omega[0]*zeit+(M_PI/2))*stw[1],2)+pow(stw[0]*zeit*cos(omega[0]*zeit+(M_PI/2))*omega[1],2));
+	return ausl;
 }
 
 Pendel::~Pendel() {

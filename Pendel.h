@@ -12,6 +12,7 @@
  */
 #ifndef PENDEL_H_
 #define PENDEL_H_
+#define _USE_MATH_DEFINES
 #include <iostream>
 #include <vector>
 #include<array>
@@ -55,6 +56,7 @@ public:
 	void berechneTraeghmg();
 	///Diese Methode berechnet die Kreisfrequenz mit Hilfe des Gesamtträgheitsmomentes und dem in der Klasse "Draht" berechnetem Richtmoment.
 	void berechneOmega(const double& pRichtm, const double& pTraeghmg);
+	array<double,2> berechneAuslenkung(const double& zeit);
 
 
 };
