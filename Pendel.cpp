@@ -21,11 +21,11 @@ Pendel::Pendel() {
 
 }
 Pendel::Pendel(const double& pPhi){
-	phi[0] = pPhi;
+	stw[0] = pStw;
 }
-Pendel::Pendel(const double& pPhi, const double& pFehler){
-	phi[0] = pPhi;
-	phi[1] = pFehler;
+Pendel::Pendel(const double& pStw, const double& pFehler){
+	stw[0] = pStw;
+	stw[1] = pFehler;
 }
 void Pendel::erstelleZylinder(const double& masse, const double& abst, const double& rai, const double& raa, const double& laen, const double& dMasse, const double& dAbst, const double& dRai, const double& dRaa, const double& dLaen){
 	 zylinder.setMasse(masse, dMasse);
@@ -41,13 +41,13 @@ void Pendel::erstelleStange(const double& masse, const double& rai, const double
 	stange.setLaen(laen, dLaen);
 }
 
-void Pendel::setPhi(const double& pPhi, const double& pFehler){
-	phi[0] = pPhi;
-	phi[1] = pFehler;
+void Pendel::setStw(const double& pStw, const double& pFehler){
+	stw[0] = pStw;
+	stw[1] = pFehler;
 }
 
-array<double,2> Pendel::getPhi(){
-	return phi;
+array<double,2> Pendel::getStw(){
+	return stw;
 }
 void Pendel::berechneOmega(const double& pRichtm, const double& pTraeghmg){
 	omega[0] = sqrt (richtm[0]/traegheitsmg[0]);
@@ -64,7 +64,7 @@ Pendel::~Pendel() {
 
 int main(){
 	Pendel a;
-	a.setPhi(20,0.1);
-	cout << a.getPhi()[0] << "/" << a.getPhi()[1] << endl;
+	a.setStw(20,0.1);
+	cout << a.getStw()[0] << "/" << a.getStw()[1] << endl;
 	return 0;
 }
