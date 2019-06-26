@@ -20,7 +20,7 @@ Pendel::Pendel() {
 	// TODO Auto-generated constructor stub
 
 }
-Pendel::Pendel(const double& pPhi){
+Pendel::Pendel(const double& pStw){
 	stw[0] = pStw;
 }
 Pendel::Pendel(const double& pStw, const double& pFehler){
