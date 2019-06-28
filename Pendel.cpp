@@ -80,15 +80,3 @@ Pendel::~Pendel() {
 	// TODO Auto-generated destructor stub
 }
 
-int main{
-	erstelleDraht(0.005, 0.2, 74, 0.001, 0.01, 0.01);
-	erstelleZylinder(0.5, 0.2, 0.01, 0.015, 0.03, 0.01, 0.01, 0.01, 0.01, 0.01);
-	erstelleStange(0.05, 0.001, 0.0015, 0.2, 0.01, 0.001, 0.001, 0.001);
-	setStw(1,0.01);
-	berechneOmega();
-	array<double,2> ausl = this->berechneAuslenkung(3.0);
-	cout << ausl[0] << ausl [1] << endl;
-
-
-
-}
