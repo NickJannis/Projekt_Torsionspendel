@@ -30,7 +30,7 @@ private:
 	array<double,2> traegheitsmg;
 	array<double,2> omega;
 	array<double,2> stw;
-	array<double,2> richtm;
+
 	Masse zylinder;
 	Masse stange;
 	Draht draht;
@@ -55,7 +55,7 @@ public:
 	/**Diese Methode berechnet das Gesamtträgheitsmoment mit Fehler mit Hilfe der in der Klasse "Masse" berechneten Einzelträgheitsmomente von Stange und Zylinder, sowie deren festgelegte Masse und Abstand zum Drehpunkt.*/
 	void berechneTraeghmg();
 	///Diese Methode berechnet die Kreisfrequenz mit Hilfe des Gesamtträgheitsmomentes und dem in der Klasse "Draht" berechnetem Richtmoment.
-	void berechneOmega(const double& pRichtm, const double& pTraeghmg);
+	void berechneOmega();
 	array<double,2> berechneAuslenkung(const double& zeit);
 
 

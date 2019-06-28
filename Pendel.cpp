@@ -7,6 +7,7 @@
 #define _USE_MATH_DEFINES
 #include "Pendel.h"
 #include "Masse.h"
+#include "Draht.h"
 #include<iostream>
 #include<vector>
 #include<array>
@@ -55,11 +56,15 @@ void Pendel::setStw(const double& pStw, const double& pFehler){
 array<double,2> Pendel::getStw(){
 	return stw;
 }
-void Pendel::berechneOmega(const double& pRichtm, const double& pTraeghmg){
+void Pendel::berechneOmega(){
+	this->berechneTraeghmg();
+	array<double,2> richtm= draht.getRichtm();
 	omega[0] = sqrt (richtm[0]/traegheitsmg[0]);
 	omega[1] = sqrt (pow(((0.5*(1/sqrt(traegheitsmg[0]*richtm[0])))*richtm[1]),2)+pow((0.5*(sqrt(richtm[0]/pow(traegheitsmg[0],3)))*traegheitsmg[1]),2));
 }
 void Pendel::berechneTraeghmg(){
+	stange.berechneTraeghm();
+	zylinder.berechneTraeghm();
 	traegheitsmg[0] = (stange.getTraeghm())[0]+ 2* ((zylinder.getMasse())[0]* pow((zylinder.getAbst())[0],2)+ (zylinder.getTraeghm())[0]);
 	traegheitsmg[1] = sqrt(pow((stange.getTraeghm())[0],2)+ pow((2*pow((zylinder.getAbst())[0],2)*(zylinder.getMasse())[1]),2)+ pow((4*(zylinder.getMasse())[0]*(zylinder.getAbst())[0]*(zylinder.getAbst())[1]),2)+ pow((2*(zylinder.getTraeghm())[1]),2));
 }
@@ -75,4 +80,15 @@ Pendel::~Pendel() {
 	// TODO Auto-generated destructor stub
 }
 
+int main{
+	erstelleDraht(0.005, 0.2, 74, 0.001, 0.01, 0.01);
+	erstelleZylinder(0.5, 0.2, 0.01, 0.015, 0.03, 0.01, 0.01, 0.01, 0.01, 0.01);
+	erstelleStange(0.05, 0.001, 0.0015, 0.2, 0.01, 0.001, 0.001, 0.001);
+	setStw(1,0.01);
+	berechneOmega();
+	array<double,2> ausl = this->berechneAuslenkung(3.0);
+	cout << ausl[0] << ausl [1] << endl;
 
+
+
+}
