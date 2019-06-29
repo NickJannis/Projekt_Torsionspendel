@@ -12,40 +12,35 @@ using namespace std;
 
 Pendel pendel;
 
-
-int begruessung(){
-	cout<<"Dieses Programm simuliert ein Torsionspendel. Was möchten Sie berechnen lassen?"<<endl;
-	cout<<"1 - Pendel berechnen (Torsionsmodul, Trägheitsmoment, Auslenkung zum Zeitpunkt t)"<<endl;
-	cout<<"2 - Zeit-Auslenkung-Graph plotten/simulieren"<<endl;
-	cout<<"3 - Ende (beendet das Programm)"<<endl;
-	cout<<"Bitte geben Sie die entsprechende Zahl ein: "<<endl;
-	cin>>int var1;
-	cout<<"\n";
-	switch(var1){
+int setzeTM(const int& pZahl,array<double, 5>& pDraht){
+	switch(pZahl){
 	case 1:{
-		this->berechnen();
-		return 1;
+		pDraht[2] = 79.3 * pow(10, 0);
+		return 0;
+
 	}
 	case 2:{
-		this->berePlot();
-		return 1;
+		pDraht[2]=47.0 * pow(10, 9);
+		return 0;
 	}
+
 	case 3:{
+		pDraht[2] = 25.5 *pow(10,9);
+		return 0;
+	}
+
+	case 4:{
+		cout<<"Bitte geben Sie das Schub-/Torsionsmodul des verwendeten Materials ein: "<<endl;
+		cin>>pDraht[2];
+
 		return 0;
 	}
 	default:{
 		cout<<"Ihre Ausgabe enthält einen Fehler. Das Programm wird beendet."<<endl;
-		return 0;
+		return 1;
 	}
 	}
-}
 
-void berechnen(){
-	this->erstellePendel();
-}
-
-void berePlot(){
-	this->erstellePendel();
 }
 
 void erstellePendel(){
@@ -54,11 +49,12 @@ void erstellePendel(){
 	cout<<"2 - Kupfer"<<endl;
 	cout<<"3 - Aluminium"<<endl;
 	cout<<"4 - beliebiges Material"<<endl;
-	cin>>int var2;
+	int var2;
+	cin>>var2;
 	cout<<"\n";
 	string pFehler = "Fehler: (Wenn ohne Fehler gerechnet werden soll, bitte 0 angeben)(in m)";
 	array<double, 5> pDraht;
-	while(this->setzeTM(var2)==1){
+	while(setzeTM(var2, pDraht)==1){
 		cout<<"Bitte wiederholen Sie ihre Eingabe: "<<endl;
 		cin>>var2;
 	}
@@ -130,46 +126,55 @@ void erstellePendel(){
 
 }
 
-int setzeTM(const int& pZahl){
-	switch(pZahl){
-	case 1:{
-		pDraht[2] = 79.3 * pow(10, 0);
-		return 0;
-
-	}
-	case 2:{
-		pDraht[2]=47.0 * pow(10, 9);
-		return 0;
-	}
-
-	case 3:{
-		pDraht[2] = 25.5 *pow(10,9);
-		return 0;
-	}
-
-	case 4:{
-		cout<<"Bitte geben Sie das Schub-/Torsionsmodul des verwendeten Materials ein: "<<endl;
-		cin>>pDraht[2];
-
-		return 0;
-	}
-	default:{
-		cout<<"Ihre Ausgabe enthält einen Fehler. Das Programm wird beendet."<<endl;
-		return 1;
-	}
-	}
-
+void berechnen(){
+	erstellePendel();
+	pendel.berechneOmega();
+	array<double, 2> pAuslenkung = pendel.berechneAuslenkung(3);
+	cout<<pAuslenkung[0]<<", "<<pAuslenkung[1]<<endl;
 }
 
 void erstellePlot(){
 
 }
 
+void berePlot(){
+	erstellePendel();
+}
+
+int begruessung(){
+	cout<<"Dieses Programm simuliert ein Torsionspendel. Was möchten Sie berechnen lassen?"<<endl;
+	cout<<"1 - Pendel berechnen (Torsionsmodul, Trägheitsmoment, Auslenkung zum Zeitpunkt t)"<<endl;
+	cout<<"2 - Zeit-Auslenkung-Graph plotten/simulieren"<<endl;
+	cout<<"3 - Ende (beendet das Programm)"<<endl;
+	cout<<"Bitte geben Sie die entsprechende Zahl ein: "<<endl;
+	int var1;
+	cin>>var1;
+	cout<<"\n";
+	switch(var1){
+	case 1:{
+		berechnen();
+		return 1;
+	}
+	case 2:{
+		berePlot();
+		return 1;
+	}
+	case 3:{
+		return 0;
+	}
+	default:{
+		cout<<"Ihre Ausgabe enthält einen Fehler. Das Programm wird beendet."<<endl;
+		return 0;
+	}
+	}
+}
+
+
 void erstelleDaten(const double& pInterv, const double& pEnde){
 	ofstream daten;
 	array<double, 2> Auslenkung;
 	daten.open("DatenPendel.txt");
-	for(double i=0, i<pEnde, i=i+pInterv){
+	for(double i=0; i<pEnde; i=i+pInterv){
 		Auslenkung = pendel.berechneAuslenkung(i);
 		daten<<i<<Auslenkung[0]<<Auslenkung[1]<<endl;
 	}
@@ -177,5 +182,6 @@ void erstelleDaten(const double& pInterv, const double& pEnde){
 }
 
 int main(){
-	while(this->begruessung()==1){};
+	while(begruessung()==1){};
+	return 0;
 }
