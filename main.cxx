@@ -121,16 +121,69 @@ void erstellePendel(){
 	cin>>pZylinder[7];
 
 	pendel.erstelleZylinder(pZylinder[0],pZylinder[8],pZylinder[1],pZylinder[2], pZylinder[3], pZylinder[4], pZylinder[9], pZylinder[5], pZylinder[6], pZylinder[7]);
+
+	cout<<"Bitte geben Sie nun den Startwinkel an, mit dem das Pendel ausgelenkt wird (in rad): "<<endl;
+	array<double, 2> pStw;
+	cin>>pStw[0];
+	cout<<"Fehler: (Wenn ohne Fehler gerechnet werden soll, bitte 0 angeben)(in rad): "<<endl;
+	cin>>pStw[1];
+	pendel.setStw(pStw[0], pStw[1]);
+
 	cout<<"Ihr Pendel wurde nun erstellt."<<endl;
 
 
 }
 
+int abfrageBerechnen(){
+	cout<<"Was möchten Sie berechnen lassen?"<<endl;
+	cout<<"1 - neuen Startwinkel setzen"<<endl;
+	cout<<"2 - Trägheitsmoment ausgeben"<<endl;
+	cout<<"3 - Auslenkung zum Zeitpunkt t nach Start"<<endl;
+	cout<<"4 - Winkelgeschwindigkeit omega ausgeben"<<endl;
+	cout<<"5 - Zurück"<<endl;
+	int pAbfr;
+	cin>>pAbfr;
+	switch(pAbfr){
+	case 1:{
+		cout<<"Geben Sie den neuen Startwinkel ein (in rad): "<<endl;
+		array<double, 2> pStw;
+		cin>>pStw[0];
+		cout<<"Fehler: (Wenn ohne Fehler gerechnet werden soll, bitte 0 angeben)(in rad): "<<endl;
+		cin>>pStw[1];
+		pendel.setStw(pStw[0], pStw[1]);
+		cout<<"Ihr neuer Startwert wurde gesetzt."<<endl;
+		return 1;
+	}
+	case 2:{
+		array<double, 2> pTraeghm = pendel.getTraeghm();
+		cout<<"Trägheitsmoment: "<<endl;
+		cout<<pTraeghm[0]<<"±"<<pTraeghm[1]<<"kg*m^2"<<endl;
+		return 1;
+	}
+	case 3:{
+		cout<<"Geben Sie den Zeitpunkt t an (in s): "<<endl;
+		double pT;
+		cin>>pT;
+		array<double,2> pAusl = pendel.berechneAuslenkung(pT);
+		cout<<"Auslenkung: "<<pAusl[0]<<"±"<<pAusl[1]<<"rad"<<endl;
+		return 1;
+	}
+	case 4:{
+		array<double,2> pOmega = pendel.getOmega();
+		cout<<"Omega: "<<pOmega[0]<<"±"<<pOmega[1]<<"Hz"<<endl;
+		return 1;
+	}
+	case 5:{
+		return 0;
+	}
+	default:{
+		return 1;
+	}
+	}
+}
+
 void berechnen(){
-	erstellePendel();
-	pendel.berechneOmega();
-	array<double, 2> pAuslenkung = pendel.berechneAuslenkung(3);
-	cout<<pAuslenkung[0]<<", "<<pAuslenkung[1]<<endl;
+	while(abfrageBerechnen()==1){}
 }
 
 void erstellePlot(){
@@ -138,28 +191,33 @@ void erstellePlot(){
 }
 
 void berePlot(){
-	erstellePendel();
 }
 
 int begruessung(){
 	cout<<"Dieses Programm simuliert ein Torsionspendel. Was möchten Sie berechnen lassen?"<<endl;
-	cout<<"1 - Pendel berechnen (Torsionsmodul, Trägheitsmoment, Auslenkung zum Zeitpunkt t)"<<endl;
-	cout<<"2 - Zeit-Auslenkung-Graph plotten/simulieren"<<endl;
-	cout<<"3 - Ende (beendet das Programm)"<<endl;
+	cout<<"1 - Pendel erstellen"<<endl;
+	cout<<"2 - Pendel berechnen (Torsionsmodul, Trägheitsmoment, Auslenkung zum Zeitpunkt t)"<<endl;
+	cout<<"3 - Zeit-Auslenkung-Graph plotten/simulieren"<<endl;
+	cout<<"4 - Ende (beendet das Programm)"<<endl;
 	cout<<"Bitte geben Sie die entsprechende Zahl ein: "<<endl;
 	int var1;
 	cin>>var1;
 	cout<<"\n";
 	switch(var1){
 	case 1:{
-		berechnen();
+		erstellePendel();
+		pendel.berechneOmega();
 		return 1;
 	}
 	case 2:{
-		berePlot();
+		berechnen();
 		return 1;
 	}
 	case 3:{
+		berePlot();
+		return 1;
+	}
+	case 4:{
 		return 0;
 	}
 	default:{

@@ -57,6 +57,8 @@ public:
 	///Diese Methode berechnet die Kreisfrequenz mit Hilfe des Gesamtträgheitsmomentes und dem in der Klasse "Draht" berechnetem Richtmoment.
 	void berechneOmega();
 	array<double,2> berechneAuslenkung(const double& zeit);
+	array<double,2> getTraeghm();
+	array<double, 2> getOmega();
 
 
 };

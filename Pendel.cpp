@@ -76,6 +76,16 @@ array<double,2> Pendel::berechneAuslenkung(const double& zeit){
 	return ausl;
 }
 
+array<double, 2> Pendel::getTraeghm(){
+	berechneTraeghmg();
+	return traegheitsmg;
+}
+
+array<double, 2> Pendel::getOmega(){
+	berechneOmega();
+	return omega;
+}
+
 Pendel::~Pendel() {
 	// TODO Auto-generated destructor stub
 }
