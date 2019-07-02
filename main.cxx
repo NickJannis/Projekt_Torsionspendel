@@ -7,6 +7,7 @@
 #include"Masse.h"
 #include"Draht.h"
 #include"Pendel.h"
+#include"gnuplot-iostream.h"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int setzeTM(const int& pZahl,array<double, 5>& pDraht){
 		pDraht[2] = 79.3 * pow(10, 0);
 		return 0;
 
+<<<<<<< HEAD
 	}
 	case 2:{
 		pDraht[2]=47.0 * pow(10, 9);
@@ -227,12 +229,29 @@ int begruessung(){
 	}
 }
 
+=======
+void erstellePlot(const double& pInterv, const double& pEnde){
+
+	this->erstelleDaten(pInterv, pEnde);
+	Gnuplot gp;
+	gp.setxlabel'Zeit in s';
+	gp.setylabel'Auslenkung in rad';
+	gp.settitle'Auslenkung eines Torsionspendels in Abhaengigkeit von der Zeit';
+	gp.plot"DatenPendel.txt" using 1:2:3 w xerrorbars;
+
+
+}
+>>>>>>> refs/heads/Ronja_1
 
 void erstelleDaten(const double& pInterv, const double& pEnde){
 	ofstream daten;
 	array<double, 2> Auslenkung;
 	daten.open("DatenPendel.txt");
+<<<<<<< HEAD
 	for(double i=0; i<pEnde; i=i+pInterv){
+=======
+	for(double i=0, i<pEnde, i=i+pInterv){
+>>>>>>> refs/heads/Ronja_1
 		Auslenkung = pendel.berechneAuslenkung(i);
 		daten<<i<<Auslenkung[0]<<Auslenkung[1]<<endl;
 	}
