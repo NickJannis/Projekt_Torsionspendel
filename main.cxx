@@ -188,6 +188,8 @@ void berechnen(){
 	while(abfrageBerechnen()==1){}
 }
 
+
+
 void erstellePlot(){
 	cout << "Geben Sie bitte an, in welchen Zeitintervallen die Auslenkung berechnet werden soll:" << endl;
 	double pI;
@@ -267,6 +269,7 @@ void erstelleDaten(const double& pInterv, const double& pEnde){
 	}
 	daten.close();
 }
+
 
 int main(){
 	while(begruessung()==1){};
