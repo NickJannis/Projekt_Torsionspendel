@@ -66,7 +66,7 @@ void Pendel::berechneTraeghmg(){
 	stange.berechneTraeghm();
 	zylinder.berechneTraeghm();
 	traegheitsmg[0] = (stange.getTraeghm())[0]+ 2* ((zylinder.getMasse())[0]* pow((zylinder.getAbst())[0],2)+ (zylinder.getTraeghm())[0]);
-	traegheitsmg[1] = sqrt(pow((stange.getTraeghm())[0],2)+ pow((2*pow((zylinder.getAbst())[0],2)*(zylinder.getMasse())[1]),2)+ pow((4*(zylinder.getMasse())[0]*(zylinder.getAbst())[0]*(zylinder.getAbst())[1]),2)+ pow((2*(zylinder.getTraeghm())[1]),2));
+	traegheitsmg[1] = sqrt(pow((stange.getTraeghm())[1],2)+ pow((2*pow((zylinder.getAbst())[0],2)*(zylinder.getMasse())[1]),2)+ pow((4*(zylinder.getMasse())[0]*(zylinder.getAbst())[0]*(zylinder.getAbst())[1]),2)+ pow((2*(zylinder.getTraeghm())[1]),2));
 }
 
 array<double,2> Pendel::berechneAuslenkung(const double& zeit){

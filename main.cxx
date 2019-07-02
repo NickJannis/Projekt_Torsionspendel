@@ -7,7 +7,7 @@
 #include"Masse.h"
 #include"Draht.h"
 #include"Pendel.h"
-#include"gnuplot-iostream.h"
+#include"gnuplot_i.hpp"
 
 using namespace std;
 
@@ -189,7 +189,24 @@ void berechnen(){
 }
 
 void erstellePlot(){
-
+	cout << "Geben Sie bitte an, in welchen Zeitintervallen die Auslenkung berechnet werden soll:" << endl;
+	double pI;
+	cin >> pI;
+	cout << "Geben Sie nun noch die Zeit an, bis zu welcher der Graph angezeigt werden soll:" << endl;
+	double pE;
+	cin >> pE;
+	erstelleDaten(pI, pE);
+	Gnuplot gp("lines");
+	gp << "set xlabel 'Zeit in s'";
+	gp << "set ylabel 'Auslenkung in rad'";
+	gp << "set key left top";
+	gp << "set terminal png \n";
+	gp << "set output 'a.png' \n";
+	gp.set_xrange(0.0, pE);
+	gp.set_yrange(-10.0, 10.0);
+	gp << "g(x) = a*sin(b*x+pi/2)";
+	gp << "fit g(x) 'DatenPendel.txt' using 1:2:3 via a,b";
+	gp << "plot 'DatenPendel.txt' using 1:2:3 w yerrorbars title 'Messdaten mit Fehler', g(x) title 'Fit' ";
 }
 
 void berePlot(){
@@ -230,17 +247,10 @@ int begruessung(){
 }
 
 =======
-void erstellePlot(const double& pInterv, const double& pEnde){
-
-	this->erstelleDaten(pInterv, pEnde);
-	Gnuplot gp;
-	gp.setxlabel'Zeit in s';
-	gp.setylabel'Auslenkung in rad';
-	gp.settitle'Auslenkung eines Torsionspendels in Abhaengigkeit von der Zeit';
-	gp.plot"DatenPendel.txt" using 1:2:3 w xerrorbars;
-
+void erstellePlot(){
 
 }
+
 >>>>>>> refs/heads/Ronja_1
 
 void erstelleDaten(const double& pInterv, const double& pEnde){
