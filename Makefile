@@ -1,20 +1,5 @@
-CFLAGS = -ggdb -Wall -Wextra -pedantic -Wconversion -Wsign-conversion
-DEFINES = -DDEBUGGA
-INCLUDES = 
-LIBS = -lstdc++
-EXAMPLE = example.o
-CC=g++
-
-.cc.o:
-	$(CC) -c $(CFLAGS) $(DEFINES) $(INCLUDES) $<
-
-all:  example
-
-gnuplot_i.o:	gnuplot_i.hpp
-example.o:	example.cc
-
-example: $(EXAMPLE)
-	$(CC) -o $@ $(CFLAGS) $(EXAMPLE) $(LIBS)
-
-clean: 
-	rm -f $(EXAMPLE) example
+CXX=g++
+CXXFLAGS=-g -Wall -MMD -std=c++11
+#Dieses Makefile erstellt das Programm Pendel.o und verwendet dafür die angegebenen Dateien. Auf Grund des Datentyps Array muss c++11 verwendet werden.
+all: Pendel.cpp Masse.cpp Draht.cpp main.cxx gnuplot_i.hpp
+	g++ -std=c++11 -o Pendel.o main.cxx Pendel.cpp Masse.cpp Draht.cpp gnuplot_i.hpp

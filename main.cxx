@@ -18,8 +18,6 @@ int setzeTM(const int& pZahl,array<double, 5>& pDraht){
 	case 1:{
 		pDraht[2] = 79.3 * pow(10, 0);
 		return 0;
-
-
 	}
 	case 2:{
 		pDraht[2]=47.0 * pow(10, 9);
@@ -133,7 +131,6 @@ void erstellePendel(){
 
 	cout<<"Ihr Pendel wurde nun erstellt."<<endl;
 
-
 }
 
 int abfrageBerechnen(){
@@ -192,17 +189,12 @@ void erstelleDaten(const double& pInterv, const double& pEnde){
 	ofstream daten;
 	array<double, 2> Auslenkung;
 	daten.open("DatenPendel.txt");
-
 	for(double i=0; i<pEnde; i=i+pInterv){
-
-	for(double i=0; i<pEnde; i=i+pInterv){
-
 		Auslenkung = pendel.berechneAuslenkung(i);
-		daten<<i<<Auslenkung[0]<<Auslenkung[1]<<endl;
+		daten<<i<<" "<<Auslenkung[0]<<" "<<Auslenkung[1]<<endl;
 	}
 	daten.close();
 }
-
 
 void erstellePlot(){
 	cout << "Geben Sie bitte an, in welchen Zeitintervallen die Auslenkung berechnet werden soll:" << endl;
@@ -217,15 +209,21 @@ void erstellePlot(){
 	gp << "set ylabel 'Auslenkung in rad'";
 	gp << "set key left top";
 	gp << "set terminal png \n";
-	gp << "set output 'a.png' \n";
+	gp << "set output 'Plot.png' \n";
 	gp.set_xrange(0.0, pE);
-	gp.set_yrange(-10.0, 10.0);
-	gp << "g(x) = a*sin(b*x+pi/2)";
-	gp << "fit g(x) 'DatenPendel.txt' using 1:2:3 via a,b";
-	gp << "plot 'DatenPendel.txt' using 1:2:3 w yerrorbars title 'Messdaten mit Fehler', g(x) title 'Fit' ";
+	double pStw = pendel.getStw()[0];
+	double pOm = pendel.getOmega()[0];
+	gp.set_yrange(-pStw-2, pStw+2);
+	auto str1 = to_string(pStw);
+	auto str2 = to_string(pOm);
+	string pG = "g(x) = "+str1+"*sin("+str2+"*x+pi/2)";
+	gp << pG;
+	gp << "plot 'DatenPendel.txt' using 1:2:3 w yerrorbars title 'Messdaten mit Fehler', g(x) title 'Funktion' ";
 }
 
 void berePlot(){
+	erstellePlot();
+	cout<<"Das File DatenPendel.txt und der Plot a.png wurden im Programmverzeichnis erstellt."<<endl;
 }
 
 int begruessung(){
@@ -261,13 +259,6 @@ int begruessung(){
 	}
 	}
 }
-
-
-
-
-
-
-
 
 int main(){
 	while(begruessung()==1){};
