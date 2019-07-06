@@ -1,3 +1,6 @@
+///Dieses File beinhaltet die Main-Methode und regelt die Kommunikation zwischen user und der Pendelsimulation.
+/** Das File speichert ein Pendel vom Typ Pendel ab, welches wiederum aus einem Draht und verschiedenen Massekomponenten zusammengesetzt wird.*/
+
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -12,7 +15,7 @@
 using namespace std;
 
 Pendel pendel;
-
+///Diese Methode setzt das Torsionsmodul des Pendels, je nachdem, welches Material beim Erstellen des Pendels angegeben wird.
 int setzeTM(const int& pZahl,array<double, 5>& pDraht){
 	switch(pZahl){
 	case 1:{
@@ -42,7 +45,9 @@ int setzeTM(const int& pZahl,array<double, 5>& pDraht){
 	}
 
 }
-
+///Dieses Menü regelt die Abfrage nach den Daten des zu simulierenden Pendels und erstellt mit diesen ein Pendel mit den entsprechenden Daten.
+/** Sämtliche eingegebene Daten können dabei mit Fehler angegeben werden. Insbesondere kann für das Torsionsmodul ein vorgeschriebenes Material verwendet werden,
+ * es kann aber auch ein eigenes Torsionsmodul eingegeben werden.*/
 void erstellePendel(){
 	cout<<"Erstellen Sie zunächst ein Pendel. Bitte geben Sie das Material des Drahtes an:"<<endl;
 	cout<<"1 - Stahl"<<endl;
@@ -133,6 +138,9 @@ void erstellePendel(){
 
 }
 
+///Diese Methode fragt ab, was der User berechnen lassen möchte, wenn der Punkt 2 im Hauptmenü gewählt worden ist.
+/** Der User kann dabei einen neuen Startwinkel für das Pendel setzen, sich das Trägheitsmoment, die Auslenkung nach einer Zeit t oder die Kreisfrequenz ausgeben lassen.
+ * Je nach Eingabe erfolgt dann eine entsprechende Ausgabe auf dem Terminal*/
 int abfrageBerechnen(){
 	cout<<"Was möchten Sie berechnen lassen?"<<endl;
 	cout<<"1 - neuen Startwinkel setzen"<<endl;
@@ -181,10 +189,13 @@ int abfrageBerechnen(){
 	}
 }
 
+///Diese Methode wird aufgerufen, wenn im Hauptmenü Punkt 2 ausgewählt wird und startet dann eine Schleife mit der Abfrage, was berechnet werden soll.
 void berechnen(){
 	while(abfrageBerechnen()==1){}
 }
 
+///Diese Methode erstellt ein Datenfile "DatenPendel.txt", welches für die Erstellung des Plots benötigt wird.
+/** Das File beinhaltet eine Spalte für die Zeit, eine für die Auslenkung und eine für den Fehler der Auslenkung.*/
 void erstelleDaten(const double& pInterv, const double& pEnde){
 	ofstream daten;
 	array<double, 2> Auslenkung;
@@ -196,6 +207,7 @@ void erstelleDaten(const double& pInterv, const double& pEnde){
 	daten.close();
 }
 
+///Diese Methode erstellt mittels gnuplot einen Zeit-Auslenkungs-Graphen mit Fehlerbalken, für den das File "DatenPendel.txt" eingelesen wird und speichert den Plot als "Plot.png".
 void erstellePlot(){
 	cout << "Geben Sie bitte an, in welchen Zeitintervallen die Auslenkung berechnet werden soll:" << endl;
 	double pI;
@@ -221,15 +233,18 @@ void erstellePlot(){
 	gp << "plot 'DatenPendel.txt' using 1:2:3 w yerrorbars title 'Messdaten mit Fehler', g(x) title 'Funktion' ";
 }
 
+///Diese Methode wird gestartet, wenn im Hauptmenü Punkt 3 gewählt wird und startet die Erstellung des Plots.
 void berePlot(){
 	erstellePlot();
 	cout<<"Das File DatenPendel.txt und der Plot a.png wurden im Programmverzeichnis erstellt."<<endl;
 }
-
+///Diese Methode bildet das zentrale Menü zur Kommunikation mit dem User.
+/** Der User kann eingeben, ob er ein Pendel erstellen, verschiedene Eigenschaften des Pendels berechnen, oder einen Zeit-Auslenkungs-Graphen zeichnen lassen möchte.
+ * Das Programm ruft dann je nach Eingabe das entsprechende Untermenü auf. Bei Eingabe von '4' wird das Hauptmenü und somit auch das Programm beendet.*/
 int begruessung(){
 	cout<<"Dieses Programm simuliert ein Torsionspendel. Was möchten Sie berechnen lassen?"<<endl;
 	cout<<"1 - Pendel erstellen"<<endl;
-	cout<<"2 - Pendel berechnen (Torsionsmodul, Trägheitsmoment, Auslenkung zum Zeitpunkt t)"<<endl;
+	cout<<"2 - Pendel berechnen (Winkelgeschwindigkeit, Trägheitsmoment, Auslenkung zum Zeitpunkt t berechnen. Neuen Startwinkel setzen)"<<endl;
 	cout<<"3 - Zeit-Auslenkung-Graph plotten/simulieren"<<endl;
 	cout<<"4 - Ende (beendet das Programm)"<<endl;
 	cout<<"Bitte geben Sie die entsprechende Zahl ein: "<<endl;
@@ -254,12 +269,12 @@ int begruessung(){
 		return 0;
 	}
 	default:{
-		cout<<"Ihre Ausgabe enthält einen Fehler. Das Programm wird beendet."<<endl;
-		return 0;
+		cout<<"Ihre Ausgabe enthält einen Fehler. Wiederholen Sie die Eingabe."<<endl;
+		return 1;
 	}
 	}
 }
-
+///Die Mainmethode startet die Standard-Begrüßungsabfrage, welche in Dauerschleife ausgeführt wird, bis der User das Programm beendet.
 int main(){
 	while(begruessung()==1){};
 	return 0;
