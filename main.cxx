@@ -236,7 +236,7 @@ void erstellePlot(){
 ///Diese Methode wird gestartet, wenn im Hauptmenü Punkt 3 gewählt wird und startet die Erstellung des Plots.
 void berePlot(){
 	erstellePlot();
-	cout<<"Das File DatenPendel.txt und der Plot a.png wurden im Programmverzeichnis erstellt."<<endl;
+	cout<<"Das File DatenPendel.txt und der Plot Plot.png wurden im Programmverzeichnis erstellt."<<endl;
 }
 ///Diese Methode bildet das zentrale Menü zur Kommunikation mit dem User.
 /** Der User kann eingeben, ob er ein Pendel erstellen, verschiedene Eigenschaften des Pendels berechnen, oder einen Zeit-Auslenkungs-Graphen zeichnen lassen möchte.
