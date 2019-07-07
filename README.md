@@ -97,38 +97,38 @@ Hier ein Beispiel, welche Werte man eingeben kann und welche Werte das Programm 
 Zunächst '1' eingeben um das Pendel zu erstellen.
 Dann wurden die folgenden Werte eingegeben:
 Material des Drahtes: 1 (Stahl)
--effektive Länge des Drahtes:0.2
--Fehler der Länge:0
--Radius des Drahtes:0.005
--Fehler des Radius:0
--Masse der Stange:0.02
--Fehler der Masse:0
--Innenradius der Stange:0.01
--Fehler des Innenradius:0.005
--Außenradius der Stange:0.015
--Fehler des Außenradius:0
--Länge der Stange:0.2
--Fehler der Länge:0.01
--Masse der Massestücke:0.05
--Fehler der Masse:0
+-effektive Länge des Drahtes:0.319
+-Fehler der Länge:0.001
+-Radius des Drahtes:0.00015
+-Fehler des Radius:0.00001
+-Masse der Stange:0.057
+-Fehler der Masse:0.0001
+-Innenradius der Stange:0.003
+-Fehler des Innenradius:0.0005
+-Außenradius der Stange:0.0037
+-Fehler des Außenradius:0.0005
+-Länge der Stange:0.3
+-Fehler der Länge:0.001
+-Masse der Massestücke:0.3522
+-Fehler der Masse:0.0001
 -Abstand der Massestücke zum Draht:0.05
--Fehler des Abstands:0
--Innenradius der verwendeten Massestücke:0.015
--Fehler des Innenradius:0
--Außenradius der Massestücke:0.03
--Fehler des Außenradius:0
--Länge der Massestücke:0.03
--Fehler der Länge:0
--Startwinkel des Pendels:6.8
+-Fehler des Abstands:0.001
+-Innenradius der verwendeten Massestücke:0.008
+-Fehler des Innenradius:0.001
+-Außenradius der Massestücke:0.04
+-Fehler des Außenradius:0.001
+-Länge der Massestücke:0.039
+-Fehler der Länge:0.001
+-Startwinkel des Pendels:6.28
 -Fehler des Startwinkels:0
 
 Dann wurde der Punkt 2 ausgewählt, um das Pendel zu berechnen. Berechnet wurde:
--Gesamtträgheitsmoment:0.000353917+/-6.66667e-06 kg*m^2
--Auslenkung bei t=20 Sekunden:5.358+/-0.0261555 rad
--Kreisfrequenz: 0.0331643+/-0.000312353 Hz
+-Gesamtträgheitsmoment:0.00257114+/-7.20377e-05 kg*m^2
+-Auslenkung bei t=10 Sekunden:-5.85779+/-0.102789 rad
+-Kreisfrequenz: 0.277282+/-0.00454058 Hz
 
-Schließlich wurde mit Hilfe von Punkt 3 der Plot erstellt, wobei als Zeitintervall 5 Sekunden gewählt wurden und als letzter Wert 400 Sekunden.
-Der Plot und die Werte sind im Repository unter "beispiel.png" und "beispiel.txt" zu finden.
+Schließlich wurde mit Hilfe von Punkt 3 der Plot erstellt, wobei als Zeitintervall 1 Sekunde gewählt wurden und als Dauer 50 Sekunden.
+Der Plot und die Werte sind im Repository im Ordner images unter "Plot.png" und in der Präsentation zu finden.
 
 
 Sonstiges:
