@@ -19,7 +19,7 @@ Pendel pendel;
 int setzeTM(const int& pZahl,array<double, 5>& pDraht){
 	switch(pZahl){
 	case 1:{
-		pDraht[2] = 79.3 * pow(10, 0);
+		pDraht[2] = 79.3 * pow(10, 9);
 		return 0;
 	}
 	case 2:{
@@ -33,8 +33,9 @@ int setzeTM(const int& pZahl,array<double, 5>& pDraht){
 	}
 
 	case 4:{
-		cout<<"Bitte geben Sie das Schub-/Torsionsmodul des verwendeten Materials ein: "<<endl;
+		cout<<"Bitte geben Sie das Schub-/Torsionsmodul des verwendeten Materials ein(in GPa): "<<endl;
 		cin>>pDraht[2];
+		pDraht[2]=pDraht[2]*pow(10,9);
 
 		return 0;
 	}
