@@ -22,7 +22,7 @@ Dort muss man das Repository dann klonen.
 Kompilieren und ausführen:
 
 Zunächst muss man in Terminal in das Verzeichnis des Programms wechseln. Kompileren lässt sich das Projekt dann durch folgenden Befehl:
-g++  -std=c++11 -o Pendel.o main.cxx Pendel.cpp Masse.cpp Draht.cpp gnuplot_i.hpp
+g++  -std=c++11 -o Pendel.out main.cxx Pendel.cpp Masse.cpp Draht.cpp gnuplot_i.hpp
 Der Befehl '-std=c++11' ist notwendig, da ältere Versionen von C++ nicht den Datentyp 'array<double,2>' kennen, welchen wir verwendet haben.
 Die Datei  'gnuplot_i.hpp' wird benötigt, damit man in C++ die Befehle von Gnuplot verwenden kann. Dies wurde zur Erstellung des Plots benötigt.
 Ausführen lässt sich das Programm dann durch den Befehl  './Pendel.out' im Terminal.
